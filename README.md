@@ -1,18 +1,10 @@
-android-master-detail-demo
-==========================
 
-Android Demo for the Master-Detail Pattern for Phones and Tablets. Check out the [Flexible User Interface](https://github.com/thecodepath/android_guides/wiki/Flexible-User-Interfaces) guide for more details about building this app.
+#Proyecto Final de la asignatura, programación multimedia y dispositivos moviles.
 
-![Master Detail Pattern](http://developer.android.com/images/training/basics/fragments-screen-mock.png)
-
-The idea is to build a flexible UI app that has a list of items and a detail view. On tablets, there is a two pane view that shows the list and the details while on a phone there is a list and detail on separate activities.
-
-## Tablet
-
-![Tablet](http://i.imgur.com/qXjBcuL.png)
-
-## Phone
-
-<img src="http://i.imgur.com/JHwjiJo.png" width="350" alt="Phone 1" />
-&nbsp;
-<img src="http://i.imgur.com/IFS7Pxh.png" width="350" alt="Phone 2" />
+El proyecto va a consistir en un aplicación android que muestre una vetana con diversos deportes 
+y que cuando se pique en uno de ellos se nos muestre una lista de cheking de material necesario para
+relizar ese deporte. Util cuando vamos a alguna prueva y no se nos olvide nada.
+- Queremos que la aplicación soporte el formato pantallas grandes, para lo cual se usarán fragments.
+- La persistencia se realizará con SQLITE.
+- Si se cierra la aplicación mantendrá el estado del cheking.
+- Se podrá introducir nuevos deportes y su lista de cheking asociada.
