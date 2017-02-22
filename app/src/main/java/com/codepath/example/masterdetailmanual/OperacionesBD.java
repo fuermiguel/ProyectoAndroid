@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public final class OperacionesBD {
 
-    private static AdminSQLiteOpenHelper baseDatos;
+    private static ChekListDbHelper baseDatos;
 
     private static OperacionesBD instancia = new OperacionesBD();
 
@@ -27,7 +27,7 @@ public final class OperacionesBD {
 
     public static OperacionesBD obtenerInstancia(Context contexto) {
         if (baseDatos == null) {
-            baseDatos = new AdminSQLiteOpenHelper(contexto);
+            baseDatos = new ChekListDbHelper(contexto);
         }
         return instancia;
     }
@@ -36,11 +36,11 @@ public final class OperacionesBD {
         Método que devuelve un cursor con la lista de deportes
      */
     public ArrayList<String> consultarDeportes( ){
-      //  AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(contexto);
+      //  ChekListDbHelper admin = new ChekListDbHelper(contexto);
         SQLiteDatabase bd = baseDatos.getReadableDatabase();
         Cursor fila = bd.rawQuery(
-                "select " +  MetadatosTablas.Deportes.NOMBRE +
-                        " from " +  AdminSQLiteOpenHelper.Tablas.DEPORTE, null);
+                "select " +  CheckListContract.Deportes.NOMBRE +
+                        " from " +  ChekListDbHelper.Tablas.DEPORTE, null);
         ArrayList deportes = new ArrayList();
 
 
