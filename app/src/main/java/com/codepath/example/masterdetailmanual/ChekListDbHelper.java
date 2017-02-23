@@ -4,26 +4,45 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import android.provider.BaseColumns;
 
 /**
  * Created by diego on 12/10/2016.
  */
+/*
+    Patrón Singleton Para SQLite
+    Crea una nueva clase llamada ChekListDbHelper e implementa un patrón singleton. Esto significa,
+    poner su constructor principal como privado, definir un miembro estático de la clase y generar un
+    método estático que permita la obtención del único miembro.
+ */
 
 public class ChekListDbHelper extends SQLiteOpenHelper {
+
+    private static ChekListDbHelper sInstance =  null;
 
     private static final String NOMBRE_BASE_DATOS = "cheking.db";
 
     //Si se cambia la base de datos, hay que incrementar la versión
     private static final int VERSION_ACTUAL = 1;
 
-    //private final Context contexto;
 
-    public ChekListDbHelper(Context context) {
+    public static synchronized ChekListDbHelper getInstance(Context context) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new ChekListDbHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    private ChekListDbHelper(Context context) {
         super(context, NOMBRE_BASE_DATOS, null, VERSION_ACTUAL);
        // this.contexto = context;
     }
-
+//Todo el campo _ID es útil cuando se utilizan los adaptadores mejorados que hacen uso de un cursor.
+    //Por esto deberemos tener dos campos ID (basecolumns_id,id_propio) este id propio lo
+    //creamos como TEXT UNIQUE NOT NULL
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT," +

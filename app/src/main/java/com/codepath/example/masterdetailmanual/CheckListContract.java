@@ -17,9 +17,14 @@ public class CheckListContract {
     private CheckListContract(){}
 
     public static class CheckListDeporte implements BaseColumns {
-        //todo el identificador no lo pongo ¿Creo que se usa con la interface BaseColumns
+        /*todo el identificador no lo pongo ¿Creo que se usa con la interface BaseColumns .Añadir el id de la tabla como unique y cuando creo la tabla añado basecolumns_id como clave primaria.
+        */
         public  static final String TABLE_NAME = "deporte";
         public  static final String COLUMN_NOMBRE= "nombre" ;
+        public static String generarIdDeporte(){
+            return "D-" + UUID.randomUUID().toString();
+        }
+
     }
 
     public static class ChekListLista implements BaseColumns {
@@ -27,31 +32,9 @@ public class CheckListContract {
         public  static final String COLUMN_FOTO= "foto" ;
         public  static final String COLUMN_DETALLE= "detalle" ;
         public  static final String COLUMN_ID_DEPORTE =  "id_deporte" ;
-    }
-/*
-    interface  ColumnasDeporte {
-        String ID = "id";
-        String NOMBRE = "nombre";
-    }
-
-    interface ColumnasLista {
-        String ID = "id";
-        String FOTO = "foto";
-        String DETALLE = "detalle";
-        String ID_DEPORTE = "id_deporte";
-    }
-
-    public static class Deportes implements ColumnasDeporte{
-        public static String generarIdDeporte(){
-            return "D-" + UUID.randomUUID().toString();
-        }
-
-    }
-
-    public static class Lista implements ColumnasLista{
         public static String generarIdLista(){
             return "L-" + UUID.randomUUID().toString();
         }
     }
-    */
+
 }

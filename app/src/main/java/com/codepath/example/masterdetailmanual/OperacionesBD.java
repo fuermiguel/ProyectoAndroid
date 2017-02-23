@@ -4,37 +4,45 @@ package com.codepath.example.masterdetailmanual;
  * Created by fuerm on 21/02/2017.
  */
 
+import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import java.util.ArrayList;
 
-/*
-    Patrón Singleton Para SQLite
-    Crea una nueva clase llamada OperacionesBD.java e implementa un patrón singleton. Esto significa,
-    poner su constructor principal como privado, definir un miembro estático de la clase y generar un
-    método estático que permita la obtención del único miembro.
- */
-
+//todo estudiar como se maneja la base de datos con singleton
 public final class OperacionesBD {
 
-    private static ChekListDbHelper baseDatos;
 
-    private static OperacionesBD instancia = new OperacionesBD();
+    /*
+    Cuando inserto un deporte se genera un id de deporte
+     */
+    public String insertarDeporte(Deporte deporte,Context context){
+        //todo insertar deportes y listas
+        SQLiteDatabase db = ChekListDbHelper.getInstance(context).getWritableDatabase();
 
-    private OperacionesBD() {
+        // Generar Pk
+        String id_Deporte = CheckListContract.CheckListDeporte.generarIdDeporte();
+
+        ContentValues valores = new ContentValues();
+        valores.put(CheckListContract.CheckListDeporte._ID, id_Deporte);
+        valores.put(CheckListContract.CheckListDeporte.COLUMN_NOMBRE, deporte.nombre);
+
+        // Insertar deporte
+        db.insertOrThrow(CheckListContract.CheckListDeporte.TABLE_NAME, null, valores);
+
+        return id_Deporte;
+
     }
 
-    public static OperacionesBD obtenerInstancia(Context contexto) {
-        if (baseDatos == null) {
-            baseDatos = new ChekListDbHelper(contexto);
-        }
-        return instancia;
-    }
+/*
+    public void insertarDeporte(String nombre){
+        //todo método insertar deporte
+        //Una vez hechi este método podemos probar con la activity normal.
+    }*/
 
     /*
         Método que devuelve un cursor con la lista de deportes
      */
+    /*
     public ArrayList<String> consultarDeportes( ){
       //  ChekListDbHelper admin = new ChekListDbHelper(contexto);
         SQLiteDatabase bd = baseDatos.getReadableDatabase();
@@ -65,16 +73,6 @@ public final class OperacionesBD {
 
         return db.insertOrThrow(Tablas.FORMA_PAGO, null, valores) > 0 ? idFormaPago : null;
     }
+*/
 
-    public void insertarDeporte(String nombre){
-        //todo método insertar deporte
-        //Una vez hechi este método podemos probar con la activity normal.
-    }
-    public void insertarDatosPrueba(){
-        //todo insertar deportes y listas
-        // Inserción Clientes
-       // String cliente1 = datos.insertarCliente(new Cliente(null, "Veronica", "Del Topo", "4552000"));
-       // String cliente2 = datos.insertarCliente(new Cliente(null, "Carlos", "Villagran", "4440000"));
-
-    }
 }
