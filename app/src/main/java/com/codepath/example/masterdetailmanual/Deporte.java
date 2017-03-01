@@ -5,11 +5,10 @@ package com.codepath.example.masterdetailmanual;
  */
 
 public class Deporte {
-    public String id_Deporte;
+
     public String nombre;
 
-    public Deporte(String id_Deporte, String nombre) {
-        this.id_Deporte = id_Deporte;
+    public Deporte(String nombre) {
         this.nombre = nombre;
     }
 }

@@ -5,13 +5,12 @@ package com.codepath.example.masterdetailmanual;
  */
 
 public class Lista {
-    public String id_lista;
+
     public String foto;
     public String detalle;
     public String id_deporte;
 
-    public Lista(String id_lista, String foto, String detalle, String id_deporte) {
-        this.id_lista = id_lista;
+    public Lista( String foto, String detalle, String id_deporte) {
         this.foto = foto;
         this.detalle = detalle;
         this.id_deporte = id_deporte;

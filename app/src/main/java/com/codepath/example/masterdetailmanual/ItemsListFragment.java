@@ -90,9 +90,9 @@ public class ItemsListFragment extends Fragment {
 
 		OperacionesBD operacionesBD = new OperacionesBD();
 		// Inserción Deporte
-		String id_deporte1 = operacionesBD.insertarDeporte(new Deporte(null,"ciclismo"), getActivity());
-		String id_deporte2 = operacionesBD.insertarDeporte(new Deporte(null,"natacion"), getActivity());
-		String id_deporte3 = operacionesBD.insertarDeporte(new Deporte(null,"trail"), getActivity());
+		operacionesBD.insertarDeporte(new Deporte("ciclismo"), getActivity());
+		operacionesBD.insertarDeporte(new Deporte("natacion"), getActivity());
+		operacionesBD.insertarDeporte(new Deporte("trail"), getActivity());
 
 		//todo falta insertar los datos de la lista(¿Las imagenes en assents?)
 
