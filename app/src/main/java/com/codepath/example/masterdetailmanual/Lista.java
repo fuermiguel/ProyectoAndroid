@@ -5,10 +5,10 @@ package com.codepath.example.masterdetailmanual;
  */
 
 public class Lista {
-    private String id_lista;
-    private String foto;
-    private String detalle;
-    private String id_deporte;
+    public String id_lista;
+    public String foto;
+    public String detalle;
+    public String id_deporte;
 
     public Lista(String id_lista, String foto, String detalle, String id_deporte) {
         this.id_lista = id_lista;

@@ -40,28 +40,34 @@ public class ChekListDbHelper extends SQLiteOpenHelper {
         super(context, NOMBRE_BASE_DATOS, null, VERSION_ACTUAL);
        // this.contexto = context;
     }
-//Todo el campo _ID es útil cuando se utilizan los adaptadores mejorados que hacen uso de un cursor.
-    //Por esto deberemos tener dos campos ID (basecolumns_id,id_propio) este id propio lo
-    //creamos como TEXT UNIQUE NOT NULL
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        "%s TEXT UNIQUE NOT NULL)",
+        db.execSQL(String.format("CREATE TABLE %s (" +
+                "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "%s TEXT NOT NULL UNIQUE, " +
+                "%s TEXT NOT NULL UNIQUE)",
                 CheckListContract.CheckListDeporte.TABLE_NAME,
                 CheckListContract.CheckListDeporte._ID,
-                CheckListContract.CheckListDeporte.COLUMN_NOMBRE));
+                CheckListContract.CheckListDeporte.ID_DEPORTE,
+                CheckListContract.CheckListDeporte.COLUMN_NAME));
 
-        db.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        "%s TEXT UNIQUE NOT NULL,  %s TEXT UNIQUE NOT NULL, %s TEXT NOT NULL," +
-                        "FOREIGN KEY(%s) REFERENCES %s(%s) )",
+        db.execSQL(String.format("CREATE TABLE %s (" +
+                "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "%s TEXT NOT NULL UNIQUE,  " +
+                "%s TEXT NOT NULL, " +
+                "%s TEXT NOT NULL," +
+                "%s TEXT NOT NULL," +
+                "FOREIGN KEY(%s) REFERENCES %s(%s) )",
                 CheckListContract.ChekListLista.TABLE_NAME,
                 CheckListContract.ChekListLista._ID,
+                CheckListContract.ChekListLista.ID_LISTA,
                 CheckListContract.ChekListLista.COLUMN_FOTO,
                 CheckListContract.ChekListLista.COLUMN_DETALLE,
                 CheckListContract.ChekListLista.COLUMN_ID_DEPORTE,
                 CheckListContract.ChekListLista.COLUMN_ID_DEPORTE,
                 CheckListContract.CheckListDeporte.TABLE_NAME,
-                CheckListContract.CheckListDeporte._ID
+                CheckListContract.CheckListDeporte.ID_DEPORTE
                 ));
 
     }

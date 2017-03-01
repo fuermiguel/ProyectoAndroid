@@ -14,6 +14,8 @@ public class ItemDetailFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		item = (Item) getArguments().getSerializable("item");
+
+		//todo aquí tengo que poblar de datos el fragmnet
 	}
 
 	@Override

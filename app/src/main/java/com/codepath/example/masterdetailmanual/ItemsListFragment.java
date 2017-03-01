@@ -3,6 +3,7 @@ package com.codepath.example.masterdetailmanual;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -37,11 +38,18 @@ public class ItemsListFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Create arraylist from item fixtures
+
+		//insertarDatosPrueba();Cuidado con descomentar que si ya existen los datos me dá error
+		//solo descomentar cuando ejecuto el programa por primera vez.
 
 
-		ArrayList deportes = OperacionesBD.obtenerInstancia(getActivity()).consultarDeportes();
-		adapterDeportes = new ArrayAdapter<Item>(getActivity(),android.R.layout.simple_list_item_activated_1, deportes);
+		Cursor deportes = (new OperacionesBD()).obtenerDeportes(getActivity());
+		ArrayList lista_deportes= new ArrayList();
+
+		while (deportes.moveToNext()){
+			lista_deportes.add(deportes.getString(2));
+		}
+		adapterDeportes = new ArrayAdapter<Item>(getActivity(),android.R.layout.simple_list_item_activated_1, lista_deportes);
 	}
 
 	@Override
@@ -76,5 +84,18 @@ public class ItemsListFragment extends Fragment {
 		lvItems.setChoiceMode(
 				activateOnItemClick ? ListView.CHOICE_MODE_SINGLE
 						: ListView.CHOICE_MODE_NONE);
+	}
+
+	private void insertarDatosPrueba(){
+
+		OperacionesBD operacionesBD = new OperacionesBD();
+		// Inserción Deporte
+		String id_deporte1 = operacionesBD.insertarDeporte(new Deporte(null,"ciclismo"), getActivity());
+		String id_deporte2 = operacionesBD.insertarDeporte(new Deporte(null,"natacion"), getActivity());
+		String id_deporte3 = operacionesBD.insertarDeporte(new Deporte(null,"trail"), getActivity());
+
+		//todo falta insertar los datos de la lista(¿Las imagenes en assents?)
+
+
 	}
 }
