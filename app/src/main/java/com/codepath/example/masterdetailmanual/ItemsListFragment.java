@@ -39,7 +39,7 @@ public class ItemsListFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//insertarDatosPrueba();Cuidado con descomentar que si ya existen los datos me dá error
+		//insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
 		//solo descomentar cuando ejecuto el programa por primera vez.
 
 
@@ -47,7 +47,7 @@ public class ItemsListFragment extends Fragment {
 		ArrayList lista_deportes= new ArrayList();
 
 		while (deportes.moveToNext()){
-			lista_deportes.add(deportes.getString(2));
+			lista_deportes.add(deportes.getString(1));
 		}
 		adapterDeportes = new ArrayAdapter<Item>(getActivity(),android.R.layout.simple_list_item_activated_1, lista_deportes);
 	}
@@ -89,10 +89,18 @@ public class ItemsListFragment extends Fragment {
 	private void insertarDatosPrueba(){
 
 		OperacionesBD operacionesBD = new OperacionesBD();
+
 		// Inserción Deporte
 		operacionesBD.insertarDeporte(new Deporte("ciclismo"), getActivity());
 		operacionesBD.insertarDeporte(new Deporte("natacion"), getActivity());
 		operacionesBD.insertarDeporte(new Deporte("trail"), getActivity());
+
+		// Inseción lista
+		operacionesBD.insertarLista(new Lista("foto1","detalle1"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("foto2","detalle2"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("foto3","detalle3"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("foto4","detalle4"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("foto5","detalle5"),getActivity(),"ciclismo");
 
 		//todo falta insertar los datos de la lista(¿Las imagenes en assents?)
 

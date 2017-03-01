@@ -16,7 +16,7 @@ public final class OperacionesBD {
     /*
     Cuando inserto un deporte se genera un id de deporte
      */
-    public void insertarDeporte(Deporte deporte,Context context){
+    public void insertarDeporte(Deporte deporte, Context context) {
         SQLiteDatabase db = ChekListDbHelper.getInstance(context).getWritableDatabase();
 
         ContentValues valores = new ContentValues();
@@ -27,22 +27,28 @@ public final class OperacionesBD {
 
     }
 
-    public String insertarLista(Lista lista,Context context){
+    public void insertarLista(Lista lista, Context context, String nombreDeporte) {
+
         SQLiteDatabase db = ChekListDbHelper.getInstance(context).getWritableDatabase();
 
-        // Generar Pk
-       // String id_lista = CheckListContract.ChekListLista.generarIdLista();
+        //Tengo que consultar el _ID del deporte para ponerlo en el campo id_deporte de la tabla lista
+        int id_deporte = obtenerIdPorNombre(nombreDeporte, context);
 
-        ContentValues valores = new ContentValues();
-        //valores.put(CheckListContract.ChekListLista.ID_LISTA, id_lista);
-        valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.foto);
-        valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.detalle);
-        valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.id_deporte);
+        //Lo hago si existe el deporte
+        if (id_deporte > 0) {
 
-        // Insertar deporte
-        db.insertOrThrow(CheckListContract.CheckListDeporte.TABLE_NAME, null, valores);
 
-        return"";//id_lista;
+            ContentValues valores = new ContentValues();
+            valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.foto);
+            valores.put(CheckListContract.ChekListLista.COLUMN_DETALLE, lista.detalle);
+
+
+            valores.put(CheckListContract.ChekListLista.COLUMN_ID_DEPORTE, id_deporte);
+
+            // Insertar lista
+            db.insertOrThrow(CheckListContract.ChekListLista.TABLE_NAME, null, valores);
+        }
+
     }
 
     public Cursor obtenerDeportes(Context context) {
@@ -53,6 +59,25 @@ public final class OperacionesBD {
         //String[] selectionArgs = {};
 
         return db.rawQuery(sql, null);
+
+    }
+
+    private int obtenerIdPorNombre(String nombre, Context context) {
+        SQLiteDatabase db = ChekListDbHelper.getInstance(context).getReadableDatabase();
+
+        String sql = String.format("SELECT * FROM %s WHERE %s=?",
+                CheckListContract.CheckListDeporte.TABLE_NAME, CheckListContract.CheckListDeporte.COLUMN_NAME);
+
+        String[] selectionArgs = {nombre};
+
+        Cursor cursor = db.rawQuery(sql, selectionArgs);
+
+        if (cursor.moveToNext()) {
+            return cursor.getInt(1);
+        } else {
+            return -1;
+        }
+
 
     }
 

@@ -10,9 +10,8 @@ public class Lista {
     public String detalle;
     public String id_deporte;
 
-    public Lista( String foto, String detalle, String id_deporte) {
+    public Lista( String foto, String detalle) {
         this.foto = foto;
         this.detalle = detalle;
-        this.id_deporte = id_deporte;
     }
 }
