@@ -6,5 +6,5 @@ y que cuando se pique en uno de ellos se nos muestre una lista de cheking de mat
 relizar ese deporte. Util cuando vamos a alguna prueva y no se nos olvide nada.
 - Queremos que la aplicación soporte el formato pantallas grandes, para lo cual se usarán fragments.
 - La persistencia se realizará con SQLITE.
-- Si se cierra la aplicación mantendrá el estado del cheking.
-- Se podrá introducir nuevos deportes y su lista de cheking asociada.
+- Si se cierra la aplicación mantendrá el estado del checking.
+- Se podrá introducir nuevos deportes y su lista de checking asociada.
