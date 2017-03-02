@@ -1,21 +1,22 @@
 package com.codepath.example.masterdetailmanual;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class ItemDetailFragment extends Fragment {
-	private Item item;
+	private String nombreDeporte;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		item = (Item) getArguments().getSerializable("item");
+		//Recupero el argumento pasado por la activity
+		nombreDeporte = getArguments().getString("nombreDeporte");
 
-		//todo aquí tengo que poblar de datos el fragmnet
+		//todo tengo que hacer el layout, hacer la consulta a la base de datos y poblar el layout
 	}
 
 	@Override
@@ -29,13 +30,14 @@ public class ItemDetailFragment extends Fragment {
 		tvBody.setText(item.getBody());
 		return view;
 	}
-    
-    // ItemDetailFragment.newInstance(item)
+
     public static ItemDetailFragment newInstance(Item item) {
-    	ItemDetailFragment fragmentDemo = new ItemDetailFragment();
+    	ItemDetailFragment fragmentItemDetail = new ItemDetailFragment();
         Bundle args = new Bundle();
-        args.putSerializable("item", item);
-        fragmentDemo.setArguments(args);
-        return fragmentDemo;
+		//Aquí pasamos el objeto completo(serializable), pero podria pasar un string con el nombre del deporte
+        //args.putSerializable("item", item);
+		args.putString("nombreDeporte", item.toString());
+        fragmentItemDetail.setArguments(args);
+        return fragmentItemDetail;
     }
 }

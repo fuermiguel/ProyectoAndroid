@@ -78,7 +78,6 @@ public final class OperacionesBD {
             return -1;
         }
 
-
     }
 
     //todo hacer obtenerlista para un deporte dado.

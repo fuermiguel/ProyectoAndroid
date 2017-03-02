@@ -3,9 +3,9 @@ package com.codepath.example.masterdetailmanual;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +18,17 @@ public class ItemsListFragment extends Fragment {
 	private ArrayAdapter<Item> adapterDeportes;
 	private ListView lvItems;
 
-	private OnItemSelectedListener listener;
 
+	private OnItemSelectedListener listener;//Almacena la interface que implementa el activity padre
+
+	//Definimos la interface que tiene que implementar la activity padre
 	public interface OnItemSelectedListener {
-		public void onItemSelected(Item i);
+		void onItemSelected(Item i);
 	}
 
+	/*
+	 En este método obtenemos el listener de la activity padre si existe
+	 */
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -34,7 +39,9 @@ public class ItemsListFragment extends Fragment {
 					+ " must implement ItemsListFragment.OnItemSelectedListener");
 		}
 	}
-	
+	/*
+	Creación inicial del fragment
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,6 +59,9 @@ public class ItemsListFragment extends Fragment {
 		adapterDeportes = new ArrayAdapter<Item>(getActivity(),android.R.layout.simple_list_item_activated_1, lista_deportes);
 	}
 
+	/*
+	Donde se relaciona el layout al fragment
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -67,7 +77,7 @@ public class ItemsListFragment extends Fragment {
 					long rowId) {
 				// Retrieve item based on position
 				Item i = adapterDeportes.getItem(position);
-				// Fire selected event for item
+				// llamo al método implemantado en la activity padre de la interface definida en este fragment.
 				listener.onItemSelected(i);
 			}
 		});
@@ -101,9 +111,6 @@ public class ItemsListFragment extends Fragment {
 		operacionesBD.insertarLista(new Lista("foto3","detalle3"),getActivity(),"ciclismo");
 		operacionesBD.insertarLista(new Lista("foto4","detalle4"),getActivity(),"ciclismo");
 		operacionesBD.insertarLista(new Lista("foto5","detalle5"),getActivity(),"ciclismo");
-
-		//todo falta insertar los datos de la lista(¿Las imagenes en assents?)
-
 
 	}
 }
