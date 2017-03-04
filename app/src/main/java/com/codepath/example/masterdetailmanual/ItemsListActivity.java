@@ -44,11 +44,11 @@ public class ItemsListActivity extends Activity implements OnItemSelectedListene
 	/*La implementación de la interface definida en el fragmento y que implementa esta activity.
 	Es llamada desde el fragment pasondole el item seleccionado */
 	@Override
-	public void onItemSelected(Item item) {
+	public void onItemSelected(Deporte item) {
 		if (isTwoPane) { // si tenemos pantalla grande añadimos  un fragmneto al layout  de pantalla
 						// grande y no tenemos que llamar a otra activity para mostrar los detalles
 
-			ItemDetailFragment fragmentItem = ItemDetailFragment.newInstance(item);
+			ItemDetailFragment fragmentItem = ItemDetailFragment.newInstance(item.getNombre());
 
 			FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.add(R.id.flDetailContainer, fragmentItem);
@@ -56,7 +56,7 @@ public class ItemsListActivity extends Activity implements OnItemSelectedListene
 		} else { // Son actividades separadas
 			// Lanzamos la activity detalles con intent.
 			Intent i = new Intent(this, ItemDetailActivity.class);
-			i.putExtra("item", item);
+			i.putExtra("nombreDeporte", item.getNombre());
 			startActivity(i);
 		}
 	}

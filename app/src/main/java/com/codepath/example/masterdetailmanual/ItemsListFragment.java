@@ -22,7 +22,7 @@ public class ItemsListFragment extends Fragment {
 
 	//Definimos la interface que tiene que implementar la activity padre
 	public interface OnItemSelectedListener {
-		void onItemSelected(Item i);
+		void onItemSelected(Deporte i);
 	}
 
 	/*
@@ -45,7 +45,7 @@ public class ItemsListFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
+		//insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
 		//solo descomentar cuando ejecuto el programa por primera vez.
 
 
@@ -78,9 +78,9 @@ public class ItemsListFragment extends Fragment {
 			public void onItemClick(AdapterView<?> adapterView, View item, int position,
 					long rowId) {
 				// Retrieve item based on position
-				//Item i = adapterDeportes.getItem(position); todo esto queda por añadir al adapter personalizado
+				Deporte deporte = (Deporte) adapterDeportes.getItem(position); //todo esto queda por añadir al adapter personalizado
 				// llamo al método implemantado en la activity padre de la interface definida en este fragment.
-				//listener.onItemSelected(i);
+				listener.onItemSelected(deporte);
 			}
 		});
 		return view;

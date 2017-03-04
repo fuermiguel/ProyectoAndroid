@@ -31,12 +31,11 @@ public class ItemDetailFragment extends Fragment {
 		return view;
 	}
 
-    public static ItemDetailFragment newInstance(Item item) {
+    public static ItemDetailFragment newInstance(String nombreDeporte) {
     	ItemDetailFragment fragmentItemDetail = new ItemDetailFragment();
         Bundle args = new Bundle();
-		//Aquí pasamos el objeto completo(serializable), pero podria pasar un string con el nombre del deporte
-        //args.putSerializable("item", item);
-		args.putString("nombreDeporte", item.toString());
+
+		args.putString("nombreDeporte", nombreDeporte);
         fragmentItemDetail.setArguments(args);
         return fragmentItemDetail;
     }
