@@ -11,11 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class ItemsListFragment extends Fragment {
-	private ArrayAdapter<Item> adapterDeportes;
+	private AdapterDeportes adapterDeportes;
 	private ListView lvItems;
 
 
@@ -46,17 +45,20 @@ public class ItemsListFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
+		insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
 		//solo descomentar cuando ejecuto el programa por primera vez.
 
 
 		Cursor deportes = (new OperacionesBD()).obtenerDeportes(getActivity());
-		ArrayList lista_deportes= new ArrayList();
+		ArrayList<Deporte> lista_deportes= new ArrayList();
 
 		while (deportes.moveToNext()){
-			lista_deportes.add(deportes.getString(1));
+			Deporte deporte = new Deporte(deportes.getString(1),deportes.getString(2));
+			lista_deportes.add(deporte);
 		}
-		adapterDeportes = new ArrayAdapter<Item>(getActivity(),android.R.layout.simple_list_item_activated_1, lista_deportes);
+		//Un adapter personalizado
+		adapterDeportes = new AdapterDeportes(getActivity(),lista_deportes);
+
 	}
 
 	/*
@@ -76,9 +78,9 @@ public class ItemsListFragment extends Fragment {
 			public void onItemClick(AdapterView<?> adapterView, View item, int position,
 					long rowId) {
 				// Retrieve item based on position
-				Item i = adapterDeportes.getItem(position);
+				//Item i = adapterDeportes.getItem(position); todo esto queda por añadir al adapter personalizado
 				// llamo al método implemantado en la activity padre de la interface definida en este fragment.
-				listener.onItemSelected(i);
+				//listener.onItemSelected(i);
 			}
 		});
 		return view;
@@ -101,9 +103,9 @@ public class ItemsListFragment extends Fragment {
 		OperacionesBD operacionesBD = new OperacionesBD();
 
 		// Inserción Deporte
-		operacionesBD.insertarDeporte(new Deporte("ciclismo"), getActivity());
-		operacionesBD.insertarDeporte(new Deporte("natacion"), getActivity());
-		operacionesBD.insertarDeporte(new Deporte("trail"), getActivity());
+		operacionesBD.insertarDeporte(new Deporte("ciclismo","ciclismo"), getActivity());
+		operacionesBD.insertarDeporte(new Deporte("natacion","natacion"), getActivity());
+		operacionesBD.insertarDeporte(new Deporte("trail","trail"), getActivity());
 
 		// Inseción lista
 		operacionesBD.insertarLista(new Lista("foto1","detalle1"),getActivity(),"ciclismo");

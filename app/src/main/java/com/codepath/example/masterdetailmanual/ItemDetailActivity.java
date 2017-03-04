@@ -1,15 +1,16 @@
 package com.codepath.example.masterdetailmanual;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+
 import android.view.Menu;
 
-public class ItemDetailActivity extends FragmentActivity {
+public class ItemDetailActivity extends Fragment {
 	ItemDetailFragment fragmentItemDetail;
-
+/*
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_detail);
 		Item item = (Item) getIntent().getSerializableExtra("item");
@@ -26,5 +27,5 @@ public class ItemDetailActivity extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.item_detail, menu);
 		return true;
 	}
-
+*/
 }

@@ -21,6 +21,7 @@ public final class OperacionesBD {
 
         ContentValues valores = new ContentValues();
         valores.put(CheckListContract.CheckListDeporte.COLUMN_NAME, deporte.nombre);
+        valores.put(CheckListContract.CheckListDeporte.COLUMN_FOTO, deporte.foto_deporte);
 
         // Insertar deporte
         db.insertOrThrow(CheckListContract.CheckListDeporte.TABLE_NAME, null, valores);
@@ -40,7 +41,7 @@ public final class OperacionesBD {
 
             ContentValues valores = new ContentValues();
             valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.foto);
-            valores.put(CheckListContract.ChekListLista.COLUMN_DETALLE, lista.detalle);
+            valores.put(CheckListContract.ChekListLista.COLUMN_DETALLE, lista.descripcion);
 
 
             valores.put(CheckListContract.ChekListLista.COLUMN_ID_DEPORTE, id_deporte);
@@ -55,8 +56,6 @@ public final class OperacionesBD {
         SQLiteDatabase db = ChekListDbHelper.getInstance(context).getReadableDatabase();
 
         String sql = String.format("SELECT * FROM %s ", CheckListContract.CheckListDeporte.TABLE_NAME);
-
-        //String[] selectionArgs = {};
 
         return db.rawQuery(sql, null);
 

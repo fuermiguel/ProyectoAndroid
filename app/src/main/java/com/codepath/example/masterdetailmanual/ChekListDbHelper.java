@@ -47,10 +47,12 @@ public class ChekListDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(String.format("CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "%s TEXT NOT NULL UNIQUE)",
+                "%s TEXT NOT NULL UNIQUE ," +
+                "%s Text NOT NULL)",
                 CheckListContract.CheckListDeporte.TABLE_NAME,
                 CheckListContract.CheckListDeporte._ID,
-                CheckListContract.CheckListDeporte.COLUMN_NAME));
+                CheckListContract.CheckListDeporte.COLUMN_NAME,
+                CheckListContract.CheckListDeporte.COLUMN_FOTO));
 
         db.execSQL(String.format("CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT," +

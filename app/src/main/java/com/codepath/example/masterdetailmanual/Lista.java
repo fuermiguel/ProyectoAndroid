@@ -7,11 +7,27 @@ package com.codepath.example.masterdetailmanual;
 public class Lista {
 
     public String foto;
-    public String detalle;
+    public String descripcion;
     public String id_deporte;
 
-    public Lista( String foto, String detalle) {
+    public Lista( String foto, String descripcion) {
         this.foto = foto;
-        this.detalle = detalle;
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
