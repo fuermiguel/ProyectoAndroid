@@ -45,8 +45,10 @@ public class ItemsListFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
 		//solo descomentar cuando ejecuto el programa por primera vez.
+		//insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
+		//todo !!!!borrar la base de datos para probar en la tablet!!!!!
+
 
 
 		Cursor deportes = (new OperacionesBD()).obtenerDeportes(getActivity());
@@ -78,7 +80,7 @@ public class ItemsListFragment extends Fragment {
 			public void onItemClick(AdapterView<?> adapterView, View item, int position,
 					long rowId) {
 				// Retrieve item based on position
-				Deporte deporte = (Deporte) adapterDeportes.getItem(position); //todo esto queda por añadir al adapter personalizado
+				Deporte deporte = (Deporte) adapterDeportes.getItem(position);
 				// llamo al método implemantado en la activity padre de la interface definida en este fragment.
 				listener.onItemSelected(deporte);
 			}
@@ -108,11 +110,14 @@ public class ItemsListFragment extends Fragment {
 		operacionesBD.insertarDeporte(new Deporte("trail","trail"), getActivity());
 
 		// Inseción lista
-		operacionesBD.insertarLista(new Lista("foto1","detalle1"),getActivity(),"ciclismo");
-		operacionesBD.insertarLista(new Lista("foto2","detalle2"),getActivity(),"ciclismo");
-		operacionesBD.insertarLista(new Lista("foto3","detalle3"),getActivity(),"ciclismo");
-		operacionesBD.insertarLista(new Lista("foto4","detalle4"),getActivity(),"ciclismo");
-		operacionesBD.insertarLista(new Lista("foto5","detalle5"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("barritas_energeticas","Barritas Energeticas"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("bicicleta_carretera","Bicicleta de carretera"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("bidon","Bidón de ciclismo"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("bomba_aire","Bomba de Aire"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("camaras","Camaras"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("casco","Casco"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("co2","Botella CO2"),getActivity(),"ciclismo");
+		operacionesBD.insertarLista(new Lista("culot","Culot"),getActivity(),"ciclismo");
 
 	}
 }

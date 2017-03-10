@@ -1,22 +1,37 @@
 package com.codepath.example.masterdetailmanual;
 
 import android.app.Fragment;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class ItemDetailFragment extends Fragment {
 	private String nombreDeporte;
+	private AdapterDetalles adapterDetalles;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//Recupero el argumento pasado por la activity
 		nombreDeporte = getArguments().getString("nombreDeporte");
+		//todo lo siguiente es hacer el xml para(large)
+		int idDeporte = (new OperacionesBD()).obtenerIdPorNombre(nombreDeporte,getActivity());
 
-		//todo tengo que hacer el layout, hacer la consulta a la base de datos y poblar el layout
+		Cursor detalles = (new OperacionesBD()).obtenerDetalles(getActivity(),idDeporte);
+		ArrayList<Lista> lista_detalles= new ArrayList();
+
+		while (detalles.moveToNext()){
+			Lista detalle = new Lista(detalles.getString(1),detalles.getString(2));
+			lista_detalles.add(detalle);
+		}
+		//Un adapter personalizado
+		adapterDetalles = new AdapterDetalles(getActivity(),lista_detalles);
 	}
 
 	@Override
@@ -24,10 +39,8 @@ public class ItemDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_item_detail, 
 				container, false);
-		TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-		TextView tvBody = (TextView) view.findViewById(R.id.tvBody);
-		/*tvTitle.setText(item.getTitle());
-		tvBody.setText(item.getBody());*/
+		ListView listViewDetalles = (ListView) view.findViewById(R.id.lstv_activity_detail);
+		listViewDetalles.setAdapter(adapterDetalles);
 		return view;
 	}
 

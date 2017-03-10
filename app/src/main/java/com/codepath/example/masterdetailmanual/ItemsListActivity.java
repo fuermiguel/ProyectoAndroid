@@ -27,11 +27,13 @@ public class ItemsListActivity extends Activity implements OnItemSelectedListene
 		//que se producen sobre la lista en el activity.
 		if (fragmentItemDetail != null) {
 			isTwoPane = true;
+			/*
 			//Si el fragmento está definido de forma estática lo puedo encontrar por su identificador.
 			ItemsListFragment fragmentItemsList = 
 					(ItemsListFragment) getFragmentManager().findFragmentById(R.id.fragmentItemsList);
 			//Para poder activar la comunicación vía listener de eventos.
 			fragmentItemsList.setActivateOnItemClick(true);
+			*/
 		}
 	}
 

@@ -20,6 +20,7 @@ public class ItemDetailActivity extends Activity {
 		//para buscar en la base de datos su cheking corespondiente.
 		String nombreDeporte =  getIntent().getExtras().getString("nombreDeporte");
 
+
 		//Paso1: Obtener instancia del administrador de fragmentos
 		FragmentManager fragmentManager = getFragmentManager();
 
@@ -28,7 +29,8 @@ public class ItemDetailActivity extends Activity {
 
 		//Paso3: Crear un nuevo fragmento y añadirlo a la actividad
 		Fragment itemDetailFragment = ItemDetailFragment.newInstance(nombreDeporte);
-		transaction.add(R.id.flDetailContainer,itemDetailFragment);
+		transaction.replace(R.id.containerDetalle,itemDetailFragment);
+		//todo mirar el cambiar el .add por .replace
 
 		//Paso4: Confirmar los cambios
 		transaction.commit();

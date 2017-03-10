@@ -40,8 +40,8 @@ public final class OperacionesBD {
 
 
             ContentValues valores = new ContentValues();
-            valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.foto);
-            valores.put(CheckListContract.ChekListLista.COLUMN_DETALLE, lista.descripcion);
+            valores.put(CheckListContract.ChekListLista.COLUMN_FOTO, lista.foto_detalle);
+            valores.put(CheckListContract.ChekListLista.COLUMN_DETALLE, lista.descripcion_detalle);
 
 
             valores.put(CheckListContract.ChekListLista.COLUMN_ID_DEPORTE, id_deporte);
@@ -61,7 +61,21 @@ public final class OperacionesBD {
 
     }
 
-    private int obtenerIdPorNombre(String nombre, Context context) {
+    public Cursor obtenerDetalles(Context context, int id_deporte) {
+        SQLiteDatabase db = ChekListDbHelper.getInstance(context).getReadableDatabase();
+
+        String sql = String.format("SELECT * FROM %s WHERE %s=?",
+                CheckListContract.ChekListLista.TABLE_NAME,
+                CheckListContract.ChekListLista.COLUMN_ID_DEPORTE);
+
+        String[] selectionArgs = {String.valueOf(id_deporte)};
+
+        return db.rawQuery(sql, selectionArgs);
+
+
+    }
+
+    public int obtenerIdPorNombre(String nombre, Context context) {
         SQLiteDatabase db = ChekListDbHelper.getInstance(context).getReadableDatabase();
 
         String sql = String.format("SELECT * FROM %s WHERE %s=?",
@@ -72,13 +86,11 @@ public final class OperacionesBD {
         Cursor cursor = db.rawQuery(sql, selectionArgs);
 
         if (cursor.moveToNext()) {
-            return cursor.getInt(1);
+            return cursor.getInt(0);
         } else {
             return -1;
         }
 
     }
-
-    //todo hacer obtenerlista para un deporte dado.
 
 }

@@ -6,28 +6,28 @@ package com.codepath.example.masterdetailmanual;
 
 public class Lista {
 
-    public String foto;
-    public String descripcion;
+    public String foto_detalle;
+    public String descripcion_detalle;
     public String id_deporte;
 
     public Lista( String foto, String descripcion) {
-        this.foto = foto;
-        this.descripcion = descripcion;
+        this.foto_detalle = foto;
+        this.descripcion_detalle = descripcion;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getFoto_detalle() {
+        return foto_detalle;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setFoto_detalle(String foto_detalle) {
+        this.foto_detalle = foto_detalle;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getDescripcion_detalle() {
+        return descripcion_detalle;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setDescripcion_detalle(String descripcion_detalle) {
+        this.descripcion_detalle = descripcion_detalle;
     }
 }

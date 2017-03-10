@@ -26,9 +26,11 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img_deporte"
+        android:id="@+id/txt_nombreDeporte"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/img_deporte"
         android:layout_toRightOf="@+id/img_deporte"
-        android:layout_marginLeft="78dp"
-        android:layout_marginStart="78dp"
-        android:id="@+id/txt_nombreDeporte" />
+        android:layout_toEndOf="@+id/img_deporte"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic" />
 </RelativeLayout>
