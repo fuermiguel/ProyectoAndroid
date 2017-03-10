@@ -20,7 +20,7 @@ public class ItemDetailFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		//Recupero el argumento pasado por la activity
 		nombreDeporte = getArguments().getString("nombreDeporte");
-		//todo lo siguiente es hacer el xml para(large)
+
 		int idDeporte = (new OperacionesBD()).obtenerIdPorNombre(nombreDeporte,getActivity());
 
 		Cursor detalles = (new OperacionesBD()).obtenerDetalles(getActivity(),idDeporte);

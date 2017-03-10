@@ -30,7 +30,6 @@ public class ItemDetailActivity extends Activity {
 		//Paso3: Crear un nuevo fragmento y añadirlo a la actividad
 		Fragment itemDetailFragment = ItemDetailFragment.newInstance(nombreDeporte);
 		transaction.replace(R.id.containerDetalle,itemDetailFragment);
-		//todo mirar el cambiar el .add por .replace
 
 		//Paso4: Confirmar los cambios
 		transaction.commit();

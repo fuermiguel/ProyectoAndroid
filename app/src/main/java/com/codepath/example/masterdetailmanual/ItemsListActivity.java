@@ -1,6 +1,7 @@
 package com.codepath.example.masterdetailmanual;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,10 +51,13 @@ public class ItemsListActivity extends Activity implements OnItemSelectedListene
 		if (isTwoPane) { // si tenemos pantalla grande añadimos  un fragmneto al layout  de pantalla
 						// grande y no tenemos que llamar a otra activity para mostrar los detalles
 
-			ItemDetailFragment fragmentItem = ItemDetailFragment.newInstance(item.getNombre());
+			ItemDetailFragment itemDetailFragment = ItemDetailFragment.newInstance(item.getNombre());
 
 			FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.add(R.id.flDetailContainer, fragmentItem);
+
+
+			ft.replace(R.id.flDetailContainer,itemDetailFragment);
+
 			ft.commit();
 		} else { // Son actividades separadas
 			// Lanzamos la activity detalles con intent.
