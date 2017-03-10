@@ -17,8 +17,8 @@ public class ItemsListFragment extends Fragment {
 	private AdapterDeportes adapterDeportes;
 	private ListView lvItems;
 
-
-	private OnItemSelectedListener listener;//Almacena la interface que implementa el activity padre
+	//Almacenamos la interface que implementa el activity padre
+	private OnItemSelectedListener listener;
 
 	//Definimos la interface que tiene que implementar la activity padre
 	public interface OnItemSelectedListener {

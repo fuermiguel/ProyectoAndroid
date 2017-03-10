@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 
 import com.codepath.example.masterdetailmanual.ItemsListFragment.OnItemSelectedListener;
 
-public class ItemsListActivity extends Activity implements OnItemSelectedListener {
+public class ItemsListActivity extends Activity implements ItemsListFragment.OnItemSelectedListener {
 	private boolean isTwoPane = false;
 
 	@Override
@@ -52,7 +52,6 @@ public class ItemsListActivity extends Activity implements OnItemSelectedListene
 						// grande y no tenemos que llamar a otra activity para mostrar los detalles
 
 			ItemDetailFragment itemDetailFragment = ItemDetailFragment.newInstance(item.getNombre());
-
 			FragmentTransaction ft = getFragmentManager().beginTransaction();
 
 
