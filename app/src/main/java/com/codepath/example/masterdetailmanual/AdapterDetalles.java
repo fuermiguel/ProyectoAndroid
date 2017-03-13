@@ -36,16 +36,20 @@ public class AdapterDetalles extends ArrayAdapter {
         this.activity = activity;
         this.datos = datos;
 
-        if ( activity instanceof OnCheckBoxSelectedListener) {
+        if (activity instanceof OnCheckBoxSelectedListener) {
             listener = (OnCheckBoxSelectedListener) activity;
         } else {
             throw new ClassCastException(activity.toString()
                     + " must implement ItemDetailFragment.OnCheckBoxSelectedListener");
         }
 
+        //Llamamos a un método que comprueba si la lista está completamente checkeada;
+        completo();
 
+    }
 
-
+    private boolean completo(){
+        return false;
     }
 
     /*Método que nos da la vista donde se mostraran los datos*/
@@ -75,28 +79,29 @@ public class AdapterDetalles extends ArrayAdapter {
         //Recogemos el CheckBox para colocarlo en su estado almacenado en las preferences
         CheckBox checkBox = (CheckBox) item.findViewById(R.id.chk_detalle);
 
+
         //Asignamos el listener
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onCheckBoxSelected(v,detalle_lista.getText().toString());
+                listener.onCheckBoxSelected(v, detalle_lista.getText().toString());
             }
         });
 
         //Obtenemos los valores almacenados en preferences
-        SharedPreferences preferences = activity.getSharedPreferences("MisPreferencias",MODE_PRIVATE);
+        SharedPreferences preferences = activity.getSharedPreferences("MisPreferencias", MODE_PRIVATE);
         if (preferences != null) {
             Map<String, ?> allEntries = preferences.getAll();
-
             for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                if (entry.getKey().equals(detalle_lista.getText().toString()) &&
-                        entry.getValue().toString().equals("true")) checkBox.setSelected(true);
+                               if (entry.getKey().equals(detalle_lista.getText().toString()) &&
+                        entry.getValue().toString().equals("true")) {
+                    checkBox.setChecked(true);
+                }
             }
         }
 
         // Devolvemos la vista para que se muestre en el ListView.
         return item;
     }
-
 
 }

@@ -14,13 +14,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ItemDetailFragment extends Fragment implements AdapterDetalles.OnCheckBoxSelectedListener {
+public class ItemDetailFragment extends Fragment  {
 	private String nombreDeporte;
 	private AdapterDetalles adapterDetalles;
 	//public  static SharedPreferences preferencias;
 
 	private AdapterDetalles.OnCheckBoxSelectedListener listener;//Almacena la interface que implementa el activity padre
-
 
 
 	/*
@@ -55,10 +54,7 @@ public class ItemDetailFragment extends Fragment implements AdapterDetalles.OnCh
 		adapterDetalles = new AdapterDetalles(getActivity(),lista_detalles);
 	}
 
-	@Override
-	public void onCheckBoxSelected(View i,String detalle) {
-		listener.onCheckBoxSelected(i,detalle);
-	}
+
 	/*
 	Instanciar los objetos que si son vistas, durante onCreateView():
 	 */
@@ -69,27 +65,7 @@ public class ItemDetailFragment extends Fragment implements AdapterDetalles.OnCh
 				container, false);
 		ListView listViewDetalles = (ListView) view.findViewById(R.id.lstv_activity_detail);
 		listViewDetalles.setAdapter(adapterDetalles);
-/*
-		View view1 = view.findViewById(R.id.chk_detalle);
-		//Tengo que hacer el listener sobre el checkbox
-		view1.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-				listener.onItemSelected(v);
-			}
-		});
-		*/
 
-		listViewDetalles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapterView, View item, int position,
-									long rowId) {
-				// Retrieve item based on position
-				//Lista lista = (Lista) adapterDetalles.getItem(position);
-				// llamo al método implemantado en la activity padre de la interface definida en este fragment.
-				//listener.onItemSelected(item);
-			}
-		});
 		return view;
 	}
 
