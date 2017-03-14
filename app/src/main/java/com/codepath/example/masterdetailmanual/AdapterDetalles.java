@@ -26,7 +26,7 @@ public class AdapterDetalles extends ArrayAdapter {
 
     //Definimos la interface que tiene que implementar la activity padre
     public interface OnCheckBoxSelectedListener {
-        void onCheckBoxSelected(View i, String detalle);
+        void onCheckBoxSelected(View i, String detalle, ArrayList<Lista> datos1);
     }
 
     public AdapterDetalles(Activity activity, ArrayList<Lista> datos) {
@@ -43,13 +43,6 @@ public class AdapterDetalles extends ArrayAdapter {
                     + " must implement ItemDetailFragment.OnCheckBoxSelectedListener");
         }
 
-        //Llamamos a un método que comprueba si la lista está completamente checkeada;
-        completo();
-
-    }
-
-    private boolean completo(){
-        return false;
     }
 
     /*Método que nos da la vista donde se mostraran los datos*/
@@ -84,7 +77,7 @@ public class AdapterDetalles extends ArrayAdapter {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onCheckBoxSelected(v, detalle_lista.getText().toString());
+                listener.onCheckBoxSelected(v, detalle_lista.getText().toString(),datos);
             }
         });
 
@@ -93,9 +86,11 @@ public class AdapterDetalles extends ArrayAdapter {
         if (preferences != null) {
             Map<String, ?> allEntries = preferences.getAll();
             for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                               if (entry.getKey().equals(detalle_lista.getText().toString()) &&
+                if (entry.getKey().equals(detalle_lista.getText().toString()) &&
                         entry.getValue().toString().equals("true")) {
                     checkBox.setChecked(true);
+                }else{
+                    //checkBox.setChecked(false);
                 }
             }
         }

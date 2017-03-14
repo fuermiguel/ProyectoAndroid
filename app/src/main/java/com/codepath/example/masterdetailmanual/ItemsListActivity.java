@@ -2,15 +2,24 @@ package com.codepath.example.masterdetailmanual;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.codepath.example.masterdetailmanual.ItemsListFragment.OnItemSelectedListener;
 
-public class ItemsListActivity extends Activity implements ItemsListFragment.OnItemSelectedListener {
+import java.util.ArrayList;
+import java.util.Map;
+
+public class ItemsListActivity extends Activity implements
+		ItemsListFragment.OnItemSelectedListener, AdapterDetalles.OnCheckBoxSelectedListener {
 	private boolean isTwoPane = false;
 
 	@Override
@@ -28,13 +37,6 @@ public class ItemsListActivity extends Activity implements ItemsListFragment.OnI
 		//que se producen sobre la lista en el activity.
 		if (fragmentItemDetail != null) {
 			isTwoPane = true;
-			/*
-			//Si el fragmento está definido de forma estática lo puedo encontrar por su identificador.
-			ItemsListFragment fragmentItemsList = 
-					(ItemsListFragment) getFragmentManager().findFragmentById(R.id.fragmentItemsList);
-			//Para poder activar la comunicación vía listener de eventos.
-			fragmentItemsList.setActivateOnItemClick(true);
-			*/
 		}
 	}
 
@@ -66,4 +68,51 @@ public class ItemsListActivity extends Activity implements ItemsListFragment.OnI
 		}
 	}
 
+	@Override
+	public void onCheckBoxSelected(View i, String detalle, ArrayList datos) {
+		//Guardo en sharedPreferences la selección del checkbox
+		SharedPreferences preferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+		SharedPreferences.Editor editor = preferences.edit();
+
+		CheckBox checkBox = (CheckBox) i;
+
+		if (checkBox.isChecked()) {
+			editor.putString(detalle, "true");
+		}else{
+			editor.putString(detalle,"false");
+		}
+
+
+		editor.commit();
+
+
+		int size = 0;
+		Map<String, ?> allEntries = preferences.getAll();
+		for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+			if(entry.getValue().toString().equals("true")) size++;
+		}
+		if (size == datos.size()){
+
+			//Limpiamos las preferencias
+
+			editor.clear().commit();
+
+
+			//Cargamos el fragmnet de completo
+
+			//Paso1: Obtener instancia del administrador de fragmentos
+			FragmentManager fragmentManager = getFragmentManager();
+
+			//Paso2: Crear la instancia de la transacción
+			FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+			//Paso3: Crear un nuevo fragmento y añadirlo a la actividad.
+			Fragment completoFragment = CompletoFragment.newInstance();
+			transaction.replace(R.id.flDetailContainer, completoFragment);
+
+			//Paso4: Confirmar los cambios
+			transaction.commit();
+		}
+
+	}
 }
