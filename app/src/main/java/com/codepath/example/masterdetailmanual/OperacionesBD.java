@@ -93,4 +93,12 @@ public final class OperacionesBD {
 
     }
 
+
+    public void borrarBD(Context context){
+        SQLiteDatabase db = ChekListDbHelper.getInstance(context).getWritableDatabase();
+
+        db.delete(CheckListContract.ChekListLista.TABLE_NAME,null,null);
+        db.delete(CheckListContract.CheckListDeporte.TABLE_NAME,null,null);
+    }
+
 }

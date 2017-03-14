@@ -27,6 +27,19 @@ public class ItemsListActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_items);
 		determinePaneLayout();
+
+		//Cargo fragmnet de presentación antes de elegir deporte.
+		if (isTwoPane) { // si tenemos pantalla grande añadimos  un fragmneto al layout  de pantalla
+			// grande y no tenemos que llamar a otra activity para mostrar los detalles
+
+			InicialFragment inicialFragment = InicialFragment.newInstance();
+			FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+
+			ft.replace(R.id.flDetailContainer, inicialFragment);
+
+			ft.commit();
+		}
 	}
 
 	private void determinePaneLayout() {

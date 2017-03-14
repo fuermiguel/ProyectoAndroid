@@ -28,10 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt_nombreDeporte"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/img_deporte"
-        android:layout_toRightOf="@+id/img_deporte"
-        android:layout_toEndOf="@+id/img_deporte"
+        android:layout_marginTop="23dp"
         android:textSize="18sp"
-        android:textStyle="normal|bold|italic" />
+        android:textStyle="normal|bold|italic"
+        android:layout_below="@+id/img_deporte"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -104,12 +104,14 @@ public class ItemsListFragment extends Fragment {
 
 		OperacionesBD operacionesBD = new OperacionesBD();
 
+		operacionesBD.borrarBD(getActivity());
+
 		// Inserción Deporte
 		operacionesBD.insertarDeporte(new Deporte("ciclismo","ciclismo"), getActivity());
 		operacionesBD.insertarDeporte(new Deporte("natacion","natacion"), getActivity());
 		operacionesBD.insertarDeporte(new Deporte("trail","trail"), getActivity());
 
-		// Inseción lista
+		// Inserción lista
 		operacionesBD.insertarLista(new Lista("barritas_energeticas","Barritas Energeticas"),getActivity(),"ciclismo");
 		operacionesBD.insertarLista(new Lista("bicicleta_carretera","Bicicleta de carretera"),getActivity(),"ciclismo");
 		operacionesBD.insertarLista(new Lista("bidon","Bidón de ciclismo"),getActivity(),"ciclismo");
@@ -118,6 +120,23 @@ public class ItemsListFragment extends Fragment {
 		operacionesBD.insertarLista(new Lista("casco","Casco"),getActivity(),"ciclismo");
 		operacionesBD.insertarLista(new Lista("co2","Botella CO2"),getActivity(),"ciclismo");
 		operacionesBD.insertarLista(new Lista("culot","Culot"),getActivity(),"ciclismo");
+
+		operacionesBD.insertarLista(new Lista("aletas","Aletas de piscina"),getActivity(),"natacion");
+		operacionesBD.insertarLista(new Lista("baniador","bañador"),getActivity(),"natacion");
+		operacionesBD.insertarLista(new Lista("gorro","gorro de piscina"),getActivity(),"natacion");
+		operacionesBD.insertarLista(new Lista("tapones","tapones para los oidos"),getActivity(),"natacion");
+		operacionesBD.insertarLista(new Lista("zapatillas_piscina","zapatillas de piscina"),getActivity(),"natacion");
+		operacionesBD.insertarLista(new Lista("neopreno","Neopreno"),getActivity(),"natacion");
+
+		operacionesBD.insertarLista(new Lista("botella_trail","Botella Flexible"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("braga_trail","Braga"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("calcetines_trail","Clacetines de compresión"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("frontal_trail","Luz frontal"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("mochila_trail","Mochila de hidratación"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("luz_trail","Luz roja de señalización"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("zapatillas_trail","Zapatillas de montaña"),getActivity(),"trail");
+		operacionesBD.insertarLista(new Lista("camiseta_trail","Camiseta técnica"),getActivity(),"trail");
+
 
 	}
 }
