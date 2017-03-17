@@ -24,6 +24,7 @@ public class ItemDetailActivity extends Activity implements AdapterDetalles.OnCh
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_item_detail);
+        setTitle("Cheking del Material Deportivo");
         //Obtenemos el parámetro nombre deporte que me pasa la activity padre y que puedo usar
         //para buscar en la base de datos su cheking corespondiente.
         String nombreDeporte = getIntent().getExtras().getString("nombreDeporte");

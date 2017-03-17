@@ -26,6 +26,7 @@ public class ItemsListActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_items);
+		setTitle("Cheking del Material Deportivo");
 		determinePaneLayout();
 
 		//Cargo fragmnet de presentación antes de elegir deporte.

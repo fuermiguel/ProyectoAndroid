@@ -46,7 +46,7 @@ public class ItemsListFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		//solo descomentar cuando ejecuto el programa por primera vez.
-		//insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
+		insertarDatosPrueba();//todo Cuidado con descomentar que si ya existen los datos me dá error
 		//todo !!!!borrar la base de datos para probar en la tablet!!!!!
 
 
