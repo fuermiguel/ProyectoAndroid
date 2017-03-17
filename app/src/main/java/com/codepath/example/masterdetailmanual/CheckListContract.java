@@ -21,25 +21,17 @@ public class CheckListContract {
     public static class CheckListDeporte implements BaseColumns {
 
         public static final String TABLE_NAME = "deporte";
-        public static final String ID_DEPORTE = "id_deporte";
+        public static final String COLUMN_FOTO = "foto_deporte";
         public static final String COLUMN_NAME = "nombre";
-
-        public static String generarIdDeporte() {
-            return "D-" + UUID.randomUUID().toString();
-        }
 
     }
 
     public static class ChekListLista implements BaseColumns {
         public static final String TABLE_NAME = "lista";
-        public static final String ID_LISTA = "id_lista";
-        public static final String COLUMN_FOTO = "foto";
-        public static final String COLUMN_DETALLE = "detalle";
+        public static final String COLUMN_FOTO = "foto_lista";
+        public static final String COLUMN_DETALLE = "descripcion";
         public static final String COLUMN_ID_DEPORTE = "id_deporte";
 
-        public static String generarIdLista() {
-            return "L-" + UUID.randomUUID().toString();
-        }
     }
 
 }

@@ -24,7 +24,8 @@ public class ChekListDbHelper extends SQLiteOpenHelper {
     //Si se cambia la base de datos, hay que incrementar la versión
     private static final int VERSION_ACTUAL = 1;
 
-
+    //El synchonized bloquea el método mientras se está utilizando, evitando
+    // que un momento dado se creen dos instancias de ChekListDbHelper
     public static synchronized ChekListDbHelper getInstance(Context context) {
 
         // Use the application context, which will ensure that you
@@ -36,6 +37,7 @@ public class ChekListDbHelper extends SQLiteOpenHelper {
         return sInstance;
     }
 
+   //El context me lo pasa desde la llamada dentro del método getInstance
     private ChekListDbHelper(Context context) {
         super(context, NOMBRE_BASE_DATOS, null, VERSION_ACTUAL);
        // this.contexto = context;
@@ -45,29 +47,27 @@ public class ChekListDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(String.format("CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "%s TEXT NOT NULL UNIQUE, " +
-                "%s TEXT NOT NULL UNIQUE)",
+                "%s TEXT NOT NULL UNIQUE ," +
+                "%s Text NOT NULL)",
                 CheckListContract.CheckListDeporte.TABLE_NAME,
                 CheckListContract.CheckListDeporte._ID,
-                CheckListContract.CheckListDeporte.ID_DEPORTE,
-                CheckListContract.CheckListDeporte.COLUMN_NAME));
+                CheckListContract.CheckListDeporte.COLUMN_NAME,
+                CheckListContract.CheckListDeporte.COLUMN_FOTO));
 
         db.execSQL(String.format("CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "%s TEXT NOT NULL UNIQUE,  " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL," +
                 "%s TEXT NOT NULL," +
                 "FOREIGN KEY(%s) REFERENCES %s(%s) )",
                 CheckListContract.ChekListLista.TABLE_NAME,
                 CheckListContract.ChekListLista._ID,
-                CheckListContract.ChekListLista.ID_LISTA,
                 CheckListContract.ChekListLista.COLUMN_FOTO,
                 CheckListContract.ChekListLista.COLUMN_DETALLE,
                 CheckListContract.ChekListLista.COLUMN_ID_DEPORTE,
                 CheckListContract.ChekListLista.COLUMN_ID_DEPORTE,
                 CheckListContract.CheckListDeporte.TABLE_NAME,
-                CheckListContract.CheckListDeporte.ID_DEPORTE
+                CheckListContract.CheckListDeporte._ID
                 ));
 
     }

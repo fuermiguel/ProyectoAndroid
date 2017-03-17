@@ -5,11 +5,28 @@ package com.codepath.example.masterdetailmanual;
  */
 
 public class Deporte {
-    public String id_Deporte;
-    public String nombre;
 
-    public Deporte(String id_Deporte, String nombre) {
-        this.id_Deporte = id_Deporte;
+    public String nombre;
+    public String foto_deporte;
+
+    public Deporte(String nombre, String foto_deporte) {
+        this.nombre = nombre;
+        this.foto_deporte = foto_deporte;
+    }
+
+    public String getFoto_deporte() {
+        return foto_deporte;
+    }
+
+    public void setFoto_deporte(String foto_deporte) {
+        this.foto_deporte = foto_deporte;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 }
