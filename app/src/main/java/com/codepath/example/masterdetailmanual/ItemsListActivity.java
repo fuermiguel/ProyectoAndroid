@@ -11,16 +11,36 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import android.widget.Toast;
-
-import com.codepath.example.masterdetailmanual.ItemsListFragment.OnItemSelectedListener;
-
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ItemsListActivity extends Activity implements
-		ItemsListFragment.OnItemSelectedListener, AdapterDetalles.OnCheckBoxSelectedListener {
+public class ItemsListActivity extends Activity implements AdapterRecycler.ClickAdapterRecycler, AdapterDetalles.OnCheckBoxSelectedListener {
 	private boolean isTwoPane = false;
+
+	/*La implementación de la interface definida en el Adapter y que implementa esta activity.
+	Es llamada desde el Adapter pasandole el item seleccionado */
+
+	@Override
+	public void onItemAdapterSeleted(Deporte item) {
+		if (isTwoPane) { // si tenemos pantalla grande añadimos  un fragmneto al layout  de pantalla
+			// grande y no tenemos que llamar a otra activity para mostrar los detalles
+
+			ItemDetailFragment itemDetailFragment = ItemDetailFragment.newInstance(item.getNombre());
+			FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+
+			ft.replace(R.id.flDetailContainer,itemDetailFragment);
+
+			ft.commit();
+		} else { // Son actividades separadas
+			// Lanzamos la activity detalles con intent.
+			Intent i = new Intent(this, ItemDetailActivity.class);
+			i.putExtra("nombreDeporte", item.getNombre());
+			startActivity(i);
+		}
+	}
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,27 +80,7 @@ public class ItemsListActivity extends Activity implements
 		return true;
 	}
 
-	/*La implementación de la interface definida en el fragmento y que implementa esta activity.
-	Es llamada desde el fragment pasondole el item seleccionado */
-	@Override
-	public void onItemSelected(Deporte item) {
-		if (isTwoPane) { // si tenemos pantalla grande añadimos  un fragmneto al layout  de pantalla
-						// grande y no tenemos que llamar a otra activity para mostrar los detalles
 
-			ItemDetailFragment itemDetailFragment = ItemDetailFragment.newInstance(item.getNombre());
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-
-			ft.replace(R.id.flDetailContainer,itemDetailFragment);
-
-			ft.commit();
-		} else { // Son actividades separadas
-			// Lanzamos la activity detalles con intent.
-			Intent i = new Intent(this, ItemDetailActivity.class);
-			i.putExtra("nombreDeporte", item.getNombre());
-			startActivity(i);
-		}
-	}
 
 	@Override
 	public void onCheckBoxSelected(View i, String detalle, ArrayList datos) {
